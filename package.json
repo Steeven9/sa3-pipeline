@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "2.1.28",
+  "private": true,
+  "description": "fake package",
+  "author": "someone",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "echo 'OK'",
+    "prettier": "prettier --check ./src/**",
+    "prettify": "prettier --write ./src/**"
+  },
+  "engines": {
+    "node": "^22.0.0"
+  },
+  "dependencies": {
+    "minio": "^8.0.1"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
