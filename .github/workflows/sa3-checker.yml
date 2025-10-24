@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Check for student name
-        run: if [ $(grep -ri "student name" | wc -l) -gt 0 ]; then echo 'student name detected!'; return -1; fi
+        # we have to ignore the two occurrences in this file
+        run: if [ $(grep -ri "student name" | wc -l) -gt 2 ]; then echo 'student name detected!'; return -1; fi
 
       - name: Check for node_modules
         run: if [ -d node_modules ]; then echo 'node_modules folder detected!'; return -1; fi
