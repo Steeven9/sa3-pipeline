@@ -35,3 +35,13 @@ jobs:
         if: ${{ hashFiles('**/package.json') != '' }}
         continue-on-error: true
         run: yarn test
+
+  notify-checkbot:
+    runs-on: ubuntu-latest
+    needs: [basic-checks, node-tests]
+    if: ${{ contains(github.event.head_commit.message, "please check") }}
+    steps:
+      - name: Ping checkbot
+        run: |
+          curl -x POST ${{ secrets.WEBHOOK_URL }} \
+          -d '{\"content\": \"${{ github.event.pusher.name }} has pushed to ${{ github.repositoryUrl }}: ${{ github.event.head_commit.message }}\"}'
