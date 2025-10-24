@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "test-sa3",
   "version": "2.1.28",
   "private": true,
   "description": "fake package",
@@ -12,9 +12,6 @@
     "test": "echo 'OK'",
     "prettier": "prettier --check ./src/**",
     "prettify": "prettier --write ./src/**"
-  },
-  "engines": {
-    "node": "^22.0.0"
   },
   "dependencies": {
     "minio": "^8.0.1"
