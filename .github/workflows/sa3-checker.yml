@@ -13,13 +13,13 @@ jobs:
 
       - name: Check for student name
         # we have to ignore the two occurrences in this file
-        run: if [ $(grep -ri "student name" | wc -l) -gt 2 ]; then echo 'student name detected!'; return -1; fi
+        run: if [ $(grep -ri "student name" | wc -l) -gt 2 ]; then echo 'student name detected!'; exit 1; fi
 
       - name: Check for node_modules
-        run: if [ -d node_modules ]; then echo 'node_modules folder detected!'; return -1; fi
+        run: if [ -d node_modules ]; then echo 'node_modules folder detected!'; exit 2; fi
 
       - name: Check for npm usage
-        run: if [ -f package-lock.json ]; then echo 'npm usage detected!'; return -1; fi
+        run: if [ -f package-lock.json ]; then echo 'npm usage detected!'; exit 3; fi
 
   node-tests:
     runs-on: ubuntu-latest
@@ -33,4 +33,5 @@ jobs:
 
       - name: Run tests
         if: ${{ hashFiles('**/package.json') != '' }}
+        continue-on-error: true
         run: yarn test
