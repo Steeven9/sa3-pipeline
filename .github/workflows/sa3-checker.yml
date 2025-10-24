@@ -23,12 +23,13 @@ jobs:
   node-tests:
     runs-on: ubuntu-latest
     needs: basic-checks
-    if: ${{ hashFiles('**/package.json') != '' }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Install deps
+        if: ${{ hashFiles('**/package.json') != '' }}
         run: yarn install
 
       - name: Run tests
+        if: ${{ hashFiles('**/package.json') != '' }}
         run: yarn test
