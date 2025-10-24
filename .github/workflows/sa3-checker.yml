@@ -1,0 +1,34 @@
+name: SA3 checker
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  basic-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for student name
+        run: if [ $(grep -ri "student name" | wc -l) -gt 0 ]; then echo 'student name detected!'; return -1; fi
+
+      - name: Check for node_modules
+        run: if [ -d node_modules ]; then echo 'node_modules folder detected!'; return -1; fi
+
+      - name: Check for npm usage
+        run: if [ -f package-lock.json ]; then echo 'npm usage detected!'; return -1; fi
+
+  node-tests:
+    runs-on: ubuntu-latest
+    needs: basic-checks
+    if: ${{ hashFiles('**/package.json') != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test
