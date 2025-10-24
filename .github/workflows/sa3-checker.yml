@@ -44,4 +44,4 @@ jobs:
       - name: Ping checkbot
         run: |
           curl -X POST ${{ secrets.WEBHOOK_URL }} --header 'Content-Type: application/json' \
-          -d '{\"content\": \"${{ github.event.pusher.name }} has pushed to ${{ github.repositoryUrl }}: ${{ github.event.head_commit.message }}\"}'
+          -d "{\"content\": \"${{ github.event.pusher.name }} has pushed to ${{ github.repositoryUrl }}: ${{ github.event.head_commit.message }}\"}"
