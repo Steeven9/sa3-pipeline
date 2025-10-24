@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "echo 'OK'",
+    "test": "echo 'not OK'; exit 1",
     "prettier": "prettier --check ./src/**",
     "prettify": "prettier --write ./src/**"
   },
